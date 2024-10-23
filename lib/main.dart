@@ -11,10 +11,12 @@ import 'home_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Inisialisasi Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // Inisialisasi SharedPreferences
   await Get.putAsync(() async => await SharedPreferences.getInstance());
 
   runApp(MyApp());
@@ -28,11 +30,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/login', // Rute awal
       getPages: [
-        GetPage(name: '/login', page: () => LoginPage()),
-        GetPage(name: '/register', page: () => RegisterPage()),
-        GetPage(name: '/home', page: () => HomePage()),
+        GetPage(name: '/login', page: () => LoginPage()), // Rute untuk LoginPage
+        GetPage(name: '/register', page: () => RegisterPage()), // Rute untuk RegisterPage
+        GetPage(name: '/home', page: () => HomePage()), // Rute untuk HomePage
       ],
     );
   }

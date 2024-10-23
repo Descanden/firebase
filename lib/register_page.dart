@@ -14,8 +14,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    _emailController.dispose(); // Membersihkan kontroler email
+    _passwordController.dispose(); // Membersihkan kontroler password
     super.dispose();
   }
 
@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title: Text('Register'), // Judul halaman
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -33,27 +33,28 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(labelText: 'Email'), // Label untuk field email
             ),
             TextField(
               controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
+              obscureText: true, // Menyembunyikan teks password
+              decoration: InputDecoration(labelText: 'Password'), // Label untuk field password
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16), // Jarak antara field dan tombol
             Obx(() {
               return ElevatedButton(
                 onPressed: _authController.isLoading.value
-                    ? null
+                    ? null // Menonaktifkan tombol jika loading
                     : () {
+                        // Memanggil fungsi registerUser dari AuthController
                         _authController.registerUser(
                           _emailController.text,
                           _passwordController.text,
                         );
                       },
                 child: _authController.isLoading.value
-                    ? CircularProgressIndicator()
-                    : Text('Register'),
+                    ? CircularProgressIndicator() // Menampilkan loader jika loading
+                    : Text('Register'), // Teks tombol
               );
             }),
           ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'auth_controller.dart';
-import 'register_page.dart';
+import 'auth_controller.dart'; // Pastikan untuk mengimpor AuthController
+import 'register_page.dart'; // Impor RegisterPage untuk navigasi
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,8 +15,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    _emailController.dispose(); // Membersihkan kontroler email
+    _passwordController.dispose(); // Membersihkan kontroler password
     super.dispose();
   }
 
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Login'), // Judul halaman
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,39 +34,40 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(labelText: 'Email'), // Label untuk field email
             ),
             TextField(
               controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
+              obscureText: true, // Menyembunyikan teks password
+              decoration: InputDecoration(labelText: 'Password'), // Label untuk field password
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16), // Jarak antara field dan tombol
             Obx(() {
               return ElevatedButton(
                 onPressed: _authController.isLoading.value
-                    ? null
+                    ? null // Menonaktifkan tombol jika loading
                     : () {
+                        // Memanggil fungsi loginUser dari AuthController
                         _authController.loginUser(
                           _emailController.text,
                           _passwordController.text,
                         );
                       },
                 child: _authController.isLoading.value
-                    ? CircularProgressIndicator()
-                    : Text('Login'),
+                    ? CircularProgressIndicator() // Menampilkan loader jika loading
+                    : Text('Login'), // Teks tombol
               );
             }),
-            SizedBox(height: 16),
+            SizedBox(height: 16), // Jarak sebelum tombol Registrasi
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
+                Text("Don't have an account?"), // Teks untuk memberitahu pengguna
                 TextButton(
                   onPressed: () {
-                    Get.to(RegisterPage());
+                    Get.to(RegisterPage()); // Navigasi ke halaman Registrasi
                   },
-                  child: Text('Register'),
+                  child: Text('Register'), // Teks tombol Registrasi
                 ),
               ],
             ),

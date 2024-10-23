@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.exit_to_app),
             onPressed: () {
+              // Panggil fungsi logout ketika tombol ditekan
               _authController.logout();
             },
           ),
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Welcome to Home Page!',
+          'Welcome to Home Page!', // Pesan sambutan di halaman Home
           style: TextStyle(fontSize: 24),
         ),
       ),
