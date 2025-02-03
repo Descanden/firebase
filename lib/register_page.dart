@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'auth_controller.dart'; // Pastikan untuk mengimpor AuthController
+import 'auth_controller.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -14,8 +14,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void dispose() {
-    _emailController.dispose(); // Membersihkan kontroler email
-    _passwordController.dispose(); // Membersihkan kontroler password
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'), // Judul halaman
+        title: Text('Register'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -33,28 +33,27 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'), // Label untuk field email
+              decoration: InputDecoration(labelText: 'Email'),
             ),
             TextField(
               controller: _passwordController,
-              obscureText: true, // Menyembunyikan teks password
-              decoration: InputDecoration(labelText: 'Password'), // Label untuk field password
+              obscureText: true,
+              decoration: InputDecoration(labelText: 'Password'),
             ),
-            SizedBox(height: 16), // Jarak antara field dan tombol
+            SizedBox(height: 16),
             Obx(() {
               return ElevatedButton(
                 onPressed: _authController.isLoading.value
-                    ? null // Menonaktifkan tombol jika loading
+                    ? null 
                     : () {
-                        // Memanggil fungsi registerUser dari AuthController
                         _authController.registerUser(
                           _emailController.text,
                           _passwordController.text,
                         );
                       },
                 child: _authController.isLoading.value
-                    ? CircularProgressIndicator() // Menampilkan loader jika loading
-                    : Text('Register'), // Teks tombol
+                    ? CircularProgressIndicator()
+                    : Text('Register'),
               );
             }),
           ],

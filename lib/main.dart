@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login', // Rute awal
+      initialRoute: '/login',
       getPages: [
         GetPage(name: '/login', page: () => LoginPage()), // Rute untuk LoginPage
         GetPage(name: '/register', page: () => RegisterPage()), // Rute untuk RegisterPage
